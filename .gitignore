@@ -38,3 +38,8 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+/node_modules
+/android/.gradle
+/android/app/build
+/android/build
+.DS_Store

@@ -6,20 +6,20 @@ import {
 
 var Home=require('./Home');
 
-var RouterMapper=function(){
-    return (<Home />);
-};
-
 class App extends Component {
     render() {
         var initialRoute={name:'home'};
         return (
             <Navigator
                 initialRoute={initialRoute}
-                renderScene={RouterMapper}
-                configureScreen = {(route) => Navigator.SceneConfigs.FloatFromRight}
+                renderScene={this.routerMapper}
+                configureScene = {(route) => Navigator.SceneConfigs.FloatFromRight}
             />
         );
+    }
+
+    routerMapper(){
+        return (<Home />);
     }
 }
 

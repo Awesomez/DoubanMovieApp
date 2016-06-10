@@ -1,35 +1,26 @@
 
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View
+  StyleSheet, Text, Navigator, View
 } from 'react-native';
 
-class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Douban Movie App
-        </Text>
-      </View>
-    );
-  }
-}
+var Home=require('./Home');
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
-  }
-});
+var RouterMapper=function(){
+    return (<Home />);
+};
+
+class App extends Component {
+    render() {
+        var initialRoute={name:'home'};
+        return (
+            <Navigator
+                initialRoute={initialRoute}
+                renderScene={RouterMapper}
+                configureScreen = {(route) => Navigator.SceneConfigs.FloatFromRight}
+            />
+        );
+    }
+}
 
 module.exports=App;

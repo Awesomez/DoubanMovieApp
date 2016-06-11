@@ -11,6 +11,8 @@ import {
     View
 } from 'react-native';
 
+var MovieInTheaters = require('./MovieInTheaters').default;
+
 var SCREEN_WIDTH=Dimensions.get('window').width;
 var DRAWER_WIDTH_LEFT=56;
 
@@ -21,9 +23,7 @@ class Home extends Component {
                 drawerWidth={SCREEN_WIDTH-DRAWER_WIDTH_LEFT}
                 drawerPosition={DrawerLayoutAndroid.positions.left}
                 renderNavigationView={() => this.renderDrawer()}>
-                <View style={{flex: 1, alignItems: 'center'}}>
-                    <Text style={{margin: 10, fontSize: 15, textAlign: 'right'}}>DoubanMovieApp</Text>
-                </View>
+                <MovieInTheaters style={{flex: 1, width: SCREEN_WIDTH}} navigator={this.props.navigator}  tabLabel="MovieInTheaters" />
             </DrawerLayoutAndroid>
         );
     }
@@ -49,7 +49,7 @@ class Home extends Component {
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3E9CE9'

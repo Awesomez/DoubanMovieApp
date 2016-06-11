@@ -39,10 +39,6 @@ export default class Drawer extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3E9CE9'
-    },
-    toolbar: {
-        backgroundColor: '#00a2ed',
-        height: 56
+        backgroundColor: '#00a2ed'
     }
 });

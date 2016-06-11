@@ -44,7 +44,7 @@ export default class Home extends Component {
     }
 
     renderDrawer() {
-        return (<Drawer />);
+        return (<Drawer navigator={this.props.navigator} />);
     }
 }
 

@@ -8,7 +8,7 @@ var Home=require('./Home').default;
 
 class App extends Component {
     render() {
-        var initialRoute={name:'home'};
+        var initialRoute={name: 'Home'};
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -19,16 +19,16 @@ class App extends Component {
                 <Navigator
                     initialRoute={initialRoute}
                     renderScene={this.routerMapper}
-                    configureScene={(route) => Navigator.SceneConfigs.FloatFromRight}
+                    configureScene={(route) => Navigator.SceneConfigs.FadeAndroid}
                 />
             </View>
         );
     }
-
-    routerMapper(action,navigator){
-        if(action.name==='home'){
-            return (<Home navigator={navigator} />);
-        }else if(action.name==='detail'){
+    
+    routerMapper(route,navigator){
+        if(route.name==='Home'){
+            return (<Home {...route.params} navigator={navigator}/>);
+        }else if(route.name==='Detail'){
             return (<View navigator={navigator}>
                 <Text>detail</Text>
             </View>);

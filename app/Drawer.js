@@ -5,9 +5,10 @@ import {
     Text,
     DrawerLayoutAndroid,
     Dimensions,
-    TouchableHighlight,
     TouchableNativeFeedback,
     Platform,
+    ToastAndroid,
+    Navigator,
     View
 } from 'react-native';
 
@@ -18,7 +19,11 @@ export default class Drawer extends Component {
         var TouchableElement = TouchableNativeFeedback;
         return (
             <View style={styles.container}>
-                <Text style={{margin: 10,color:'#fff',fontSize: 15, textAlign: 'center'}}>我是导航功能栏标题</Text>
+                <TouchableNativeFeedback onPress={this._pressButton.bind(this)}>
+                    <View>
+                        <Text style={{margin: 10,color:'#fff',fontSize: 15, textAlign: 'center'}}>我是导航功能栏标题</Text>
+                    </View>
+                </TouchableNativeFeedback>
                 {
                     menuList.map(function (v,k){
                         return (
@@ -33,6 +38,16 @@ export default class Drawer extends Component {
                 }
             </View>
         );
+    }
+
+    _pressButton() {
+        ToastAndroid.show('hahadd', ToastAndroid.SHORT);
+        const { navigator } = this.props;
+        if(navigator) {
+            navigator.push({
+                name: 'Detail'
+            })
+        }
     }
 }
 

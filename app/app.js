@@ -4,7 +4,7 @@ import {
   StyleSheet, Text, Navigator, View
 } from 'react-native';
 
-var Home=require('./Home');
+var Home=require('./Home').default;
 
 class App extends Component {
     render() {

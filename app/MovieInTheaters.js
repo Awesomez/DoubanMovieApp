@@ -7,7 +7,6 @@ import {
 var REQUEST_URL="https://api.douban.com/v2/movie/in_theaters";
 
 export default class MovieInTheaters extends Component {
-    // 构造
     constructor(props) {
         super(props);
 

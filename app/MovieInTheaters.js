@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import {
-    StyleSheet, Text, Navigator, View,ListView,Image,ProgressBarAndroid,TouchableNativeFeedback
+    StyleSheet, Text, Navigator, View,ListView,Image,ProgressBarAndroid,TouchableNativeFeedback,ToastAndroid
 } from 'react-native';
 
 const API_MOVIE_IN_THEATERS="https://api.douban.com/v2/movie/in_theaters";
@@ -9,8 +9,8 @@ const API_MOVIE_IN_THEATERS="https://api.douban.com/v2/movie/in_theaters";
 export default class MovieInTheaters extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
+            api: API_MOVIE_IN_THEATERS,
             isLoaded: false,
             dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         };
@@ -18,6 +18,7 @@ export default class MovieInTheaters extends Component {
 
     //componentDidMount方法方法只会在组件完成加载的时候调用一次
     componentDidMount() {
+        ToastAndroid.show('Welcome', ToastAndroid.SHORT);
         this.fetchData();
     }
 
@@ -35,7 +36,7 @@ export default class MovieInTheaters extends Component {
     }
 
     fetchData(){
-        fetch(API_MOVIE_IN_THEATERS)
+        fetch(this.state.api)
             .then((response) => response.json())
             .catch((error)=>{
                 this.setState({

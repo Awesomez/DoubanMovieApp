@@ -18,8 +18,14 @@ class App extends Component {
         );
     }
 
-    routerMapper(){
-        return (<Home />);
+    routerMapper(action,navigator){
+        if(action.name==='home'){
+            return (<Home navigator={navigator} />);
+        }else if(action.name==='detail'){
+            return (<View navigator={navigator}>
+                <Text>detail</Text>
+            </View>);
+        }
     }
 }
 

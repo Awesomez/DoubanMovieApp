@@ -19,6 +19,7 @@ export default class Home extends Component {
     render() {
         return (
             <DrawerLayoutAndroid
+                ref={(drawer)=>{this.drawer = drawer}}
                 drawerWidth={SCREEN_WIDTH-DRAWER_WIDTH_LEFT}
                 drawerPosition={DrawerLayoutAndroid.positions.left}
                 renderNavigationView={() => this.renderDrawer()}>

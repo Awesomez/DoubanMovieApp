@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import {
-    StyleSheet, Text, Navigator, View,ListView,Image,ProgressBarAndroid
+    StyleSheet, Text, Navigator, View,ListView,Image,ProgressBarAndroid,TouchableNativeFeedback
 } from 'react-native';
 
 const API_MOVIE_IN_THEATERS="https://api.douban.com/v2/movie/in_theaters";
@@ -54,6 +54,7 @@ export default class MovieInTheaters extends Component {
 
     renderMovie(movie: Object){
         return (
+            <TouchableNativeFeedback >
             <View style={styles.movieRow}>
                 <Image
                     source={{uri: movie.images.small}}
@@ -63,6 +64,7 @@ export default class MovieInTheaters extends Component {
                     <Text style={styles.movieStar}>{movie.rating.average}({movie.rating.stars})</Text>
                 </View>
             </View>
+            </TouchableNativeFeedback>
         );
     }
 

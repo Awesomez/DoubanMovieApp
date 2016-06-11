@@ -42,4 +42,6 @@ android/keystores/debug.keystore
 /android/.gradle
 /android/app/build
 /android/build
+/android/app/my-release-key.keystore
+/android/gradle.properties
 .DS_Store

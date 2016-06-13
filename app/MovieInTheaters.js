@@ -19,7 +19,7 @@ export default class MovieInTheaters extends Component {
     //componentDidMount方法方法只会在组件完成加载的时候调用一次
     componentDidMount() {
         ToastAndroid.show('Welcome', ToastAndroid.SHORT);
-        this.fetchData();
+        this.fetchData(this.props.theme);
     }
 
     render() {
@@ -35,7 +35,10 @@ export default class MovieInTheaters extends Component {
         );
     }
 
-    fetchData(){
+    fetchData(object){
+        if(object){
+            ToastAndroid.show(object.name,ToastAndroid.SHORT);
+        }
         fetch(this.state.api)
             .then((response) => response.json())
             .catch((error)=>{

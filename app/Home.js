@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
-    DrawerLayoutAndroid,ToolbarAndroid,
+    DrawerLayoutAndroid,ToolbarAndroid,ToastAndroid,
     Dimensions,
     Platform,
     View
@@ -14,7 +14,7 @@ var Drawer = require('./Drawer').default;
 
 const SCREEN_WIDTH=Dimensions.get('window').width;
 const DRAWER_WIDTH_LEFT=56;
-const DRAWER_REF = 'drawer';
+const REF_DRAWER = 'ref_drawer';
 const APP_NAME='豆瓣电影';
 
 const toolbarActions = [
@@ -24,10 +24,24 @@ const toolbarActions = [
 ];
 
 export default class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            theme:null
+        };
+    }
+
+    onSelectTheme(object) {
+        this.state = {
+            theme:object
+        };
+        ToastAndroid.show(object.name, ToastAndroid.SHORT);
+    }
+
     render() {
         return (
             <DrawerLayoutAndroid
-                ref={DRAWER_REF}
+                ref={REF_DRAWER}
                 drawerWidth={SCREEN_WIDTH-DRAWER_WIDTH_LEFT}
                 drawerPosition={DrawerLayoutAndroid.positions.left}
                 renderNavigationView={() => this.renderDrawer()}>
@@ -36,15 +50,15 @@ export default class Home extends Component {
                     titleColor="white"
                     style={styles.toolbar}
                     actions={toolbarActions}
-                    onIconClicked={() => this.refs[DRAWER_REF].openDrawer()}
+                    onIconClicked={() => this.refs[REF_DRAWER].openDrawer()}
                     onActionSelected={this.onActionSelected} />
-                <MovieInTheaters style={{flex: 1, width: SCREEN_WIDTH}} navigator={this.props.navigator}  tabLabel="MovieInTheaters" />
+                <MovieInTheaters theme={this.state.theme} style={{flex: 1, width: SCREEN_WIDTH}} navigator={this.props.navigator}  tabLabel="MovieInTheaters" />
             </DrawerLayoutAndroid>
         );
     }
 
     renderDrawer() {
-        return (<Drawer navigator={this.props.navigator} />);
+        return (<Drawer navigator={this.props.navigator} onSelectItem={this.onSelectTheme} />);
     }
 }
 

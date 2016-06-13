@@ -13,7 +13,8 @@ class App extends Component {
             <View style={styles.container}>
                 <StatusBar
                     translucent={false}
-                    backgroundColor="rgba(0, 0, 0, 0.1)"
+                    //backgroundColor="rgba(0, 0, 0, 0.1)"
+                    backgroundColor="#00a2ed"
                     barStyle="light-content"
                 />
                 <Navigator

@@ -4,22 +4,31 @@ import {
     StyleSheet, Text, Navigator, View,ListView,Image,ProgressBarAndroid,TouchableNativeFeedback,ToastAndroid
 } from 'react-native';
 
-const API_MOVIE_IN_THEATERS="https://api.douban.com/v2/movie/in_theaters";
-
 export default class MovieInTheaters extends Component {
     constructor(props) {
         super(props);
+
+        var dataSource = new ListView.DataSource({
+            rowHasChanged: (row1, row2) => row1 !== row2,
+            sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+        });
+
         this.state = {
-            api: API_MOVIE_IN_THEATERS,
             isLoaded: false,
-            dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+            dataSource: dataSource
         };
     }
 
     //componentDidMount方法方法只会在组件完成加载的时候调用一次
     componentDidMount() {
-        ToastAndroid.show('Welcome', ToastAndroid.SHORT);
-        this.fetchData(this.props.theme);
+        this.fetchData(this.props.theme.api);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            isLoaded:false,
+        });
+        this.fetchData(nextProps.theme.api);
     }
 
     render() {
@@ -28,18 +37,15 @@ export default class MovieInTheaters extends Component {
         }
         return (
             <ListView
-                initialListSize={10}
+                initialListSize={6}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderMovie}
             />
         );
     }
 
-    fetchData(object){
-        if(object){
-            ToastAndroid.show(object.name,ToastAndroid.SHORT);
-        }
-        fetch(this.state.api)
+    fetchData(api){
+        fetch(api)
             .then((response) => response.json())
             .catch((error)=>{
                 this.setState({
@@ -57,14 +63,18 @@ export default class MovieInTheaters extends Component {
     }
 
     renderMovie(movie: Object){
+        var itemTitle=movie.title?movie.title:null;
+        var itemTitleEng=movie.original_title?movie.original_title:null;
+        var itemImgSmall=(movie.images.small!== undefined)?movie.images.small:null;
+
         return (
             <TouchableNativeFeedback >
             <View style={styles.movieRow}>
                 <Image
-                    source={{uri: movie.images.small}}
+                    source={{uri: itemImgSmall}}
                     style={styles.movieImage} />
                 <View style={styles.movieBox}>
-                    <Text style={styles.movieTitle}>{movie.title}-{movie.original_title}</Text>
+                    <Text style={styles.movieTitle}>{itemTitle}-{itemTitleEng}</Text>
                     <Text style={styles.movieStar}>{movie.rating.average}({movie.rating.stars})</Text>
                 </View>
             </View>

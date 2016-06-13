@@ -21,8 +21,6 @@ export default class Drawer extends Component {
     constructor(props) {
         super(props);
 
-        this.renderRow=this.renderRow.bind(this);
-
         var ds=new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         let responseData=data.drawerList();
         if(responseData){
@@ -30,6 +28,8 @@ export default class Drawer extends Component {
                 dataSource: ds.cloneWithRows(responseData)
             };
         }
+
+        this.renderRow=this.renderRow.bind(this);
     }
 
     render() {

@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -27,12 +28,16 @@ class DataSource {
     drawerList(){
         return [
             this.drawerModel('正在热映',KEY_IN_THEATERS,API_IN_THEATERS),
-            this.drawerModel('北美票房榜',KEY_US_BOX,API_US_BOX),
-            this.drawerModel('口碑榜',KEY_WEEKLY,API_WEEKLY),
+            //this.drawerModel('北美票房榜',KEY_US_BOX,API_US_BOX),
+            //this.drawerModel('口碑榜',KEY_WEEKLY,API_WEEKLY),
             this.drawerModel('即将上映',KEY_COMING_SOON,API_COMING_SOON),
             this.drawerModel('Top250',KEY_TOP250,API_TOP250),
-            this.drawerModel('新片榜',KEY_NEW_MOVIES,API_NEW_MOVIES)
+            //this.drawerModel('新片榜',KEY_NEW_MOVIES,API_NEW_MOVIES)
         ];
+    }
+
+    drawerListInit(){
+        return this.drawerList()[0];
     }
 
     drawerModel (name,key,api) {

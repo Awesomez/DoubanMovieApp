@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import {
     StyleSheet,ScrollView,Text, Image,
-    DrawerLayoutAndroid,ToolbarAndroid,ToastAndroid,
+    DrawerLayoutAndroid,ToolbarAndroid,ToastAndroid,TouchableNativeFeedback,
     Dimensions, Platform, View
 } from 'react-native';
 
@@ -17,6 +17,7 @@ export default class DetailPage extends Component {
             movie: this.props.movie,
             detail:null
         };
+        this.onBackButton=this.onBackButton.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +47,16 @@ export default class DetailPage extends Component {
     renderDetail(){
         return(
             <View style={styles.container}>
+                    <View style={styles.toolbar}>
+                        <TouchableNativeFeedback onPress={this.onBackButton}>
+                            <View>
+                                <Image
+                                    style={styles.backButton}
+                                    source={require('./images/ic_back.png')}
+                                    resizeMode='contain' />
+                            </View>
+                        </TouchableNativeFeedback>
+                    </View>
                 <ScrollView style={styles.detailContainer} showsVerticalScrollIndicator={false} >
                     <View style={styles.detailImageBox}>
                         <Image style={styles.detailImage}
@@ -72,12 +83,17 @@ export default class DetailPage extends Component {
         }
         return actors.join(' ');
     }
+
+    onBackButton() {
+        if (this.props.navigator) {
+            this.props.navigator.pop();
+        }
+    }
 }
 
 const styles = StyleSheet.create({
     detailContainer: {
         flex: 1,
-        flexDirection: 'column',
         backgroundColor: 'white',
     },
     detailImageBox: {
@@ -111,7 +127,7 @@ const styles = StyleSheet.create({
         color: '#333',
         fontSize: 14,
         marginTop: 10,
-        marginLeft: 21,
+        marginLeft: 20,
     },
     detailSummaryContent: {
         color: '#666',
@@ -125,7 +141,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#FAFAFA',
     },
     toolbar: {
-        backgroundColor: 'white',
-        height: 50,
+        backgroundColor: '#30925C',
+        height: 36,
     },
+    backButton: {
+        width: 32,
+        height: 32,
+        marginLeft: 10,
+        marginTop:2,
+    },
+
 });

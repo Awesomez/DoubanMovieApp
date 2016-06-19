@@ -70,7 +70,7 @@ export default class HomePageList extends Component {
         var itemImgSmall=(movie.images.small!== undefined)?movie.images.small:null;
 
         return (
-            <TouchableNativeFeedback onPress={this.pressButton.bind(this)}>
+            <TouchableNativeFeedback onPress={()=>this.pressButton(movie)}>
             <View style={styles.movieRow}>
                 <Image
                     source={{uri: itemImgSmall}}
@@ -95,11 +95,12 @@ export default class HomePageList extends Component {
         );
     }
 
-    pressButton() {
+    pressButton(movie) {
         const { navigator } = this.props;
         if(navigator) {
             navigator.push({
-                name: 'Detail'
+                name: 'Detail',
+                movie:movie
             })
         }
     }

@@ -15,7 +15,7 @@ class App extends Component {
                 <StatusBar
                     translucent={false}
                     //backgroundColor="rgba(0, 0, 0, 0.1)"
-                    backgroundColor="#00a2ed"
+                    backgroundColor="#30925C"
                     barStyle="light-content"
                 />
                 <Navigator
@@ -32,7 +32,7 @@ class App extends Component {
             case 'Home':
                 return (<HomePage {...route.params} navigator={navigator}/>);
             case 'Detail':
-                return (<DetailPage navigator={navigator} />);
+                return (<DetailPage movie={route.movie} navigator={navigator} />);
         }
     }
 }

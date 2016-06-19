@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FAFAFA',
     },
     toolbar: {
-        backgroundColor: '#00a2ed',
+        backgroundColor: '#30925C',
         height: 56,
     },
 });

@@ -37,7 +37,7 @@ export default class Drawer extends Component {
             <View style={styles.container}>
                 <TouchableNativeFeedback>
                     <View>
-                        <Text style={{margin: 10,color:'#fff',fontSize: 15, textAlign: 'center'}}>我是导航功能栏标题</Text>
+                        <Text style={{margin: 10,color:'#fff',fontSize: 15, textAlign: 'center'}}>豆瓣电影</Text>
                     </View>
                 </TouchableNativeFeedback>
                 <ListView
@@ -66,7 +66,7 @@ export default class Drawer extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#00a2ed'
+        backgroundColor: '#30925C'
     },
     rowLine: {
         flex: 1,

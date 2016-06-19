@@ -8,6 +8,8 @@ import {
     View
 } from 'react-native';
 
+const API_MOVIE_DETAI='https://api.douban.com/v2/movie/subject/';
+
 //https://developers.douban.com/wiki/?title=movie_v2
 const API_IN_THEATERS='https://api.douban.com/v2/movie/in_theaters';
 const API_US_BOX='https://api.douban.com/v2/movie/us_box';
@@ -42,6 +44,27 @@ class DataSource {
 
     drawerModel (name,key,api) {
         return {name,key,api};
+    }
+
+    getMovieDetail(movieId){
+        var url=API_MOVIE_DETAI + movieId;
+        return this.theFetch(url);
+    }
+
+    theFetch (reqUrl: string) {
+        console.log('reqUrl', reqUrl);
+        return new Promise((resolve, reject) => {
+            fetch(reqUrl)
+                .then((response) => response.json())
+                .then((responseData) => {
+                    //console.log(responseData);
+                    resolve(responseData);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    resolve(null);
+                });
+        });
     }
 
 }

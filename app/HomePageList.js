@@ -4,7 +4,7 @@ import {
     StyleSheet, Text, Navigator, View,ListView,Image,ProgressBarAndroid,TouchableNativeFeedback,ToastAndroid
 } from 'react-native';
 
-export default class MovieInTheaters extends Component {
+export default class HomePageList extends Component {
     constructor(props) {
         super(props);
 

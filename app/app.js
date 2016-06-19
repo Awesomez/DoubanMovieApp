@@ -4,7 +4,7 @@ import {
   StyleSheet, Text, Navigator, View,StatusBar
 } from 'react-native';
 
-var Home=require('./Home').default;
+var HomePage=require('./HomePage').default;
 
 class App extends Component {
     render() {
@@ -28,7 +28,7 @@ class App extends Component {
     
     routerMapper(route,navigator){
         if(route.name==='Home'){
-            return (<Home {...route.params} navigator={navigator}/>);
+            return (<HomePage {...route.params} navigator={navigator}/>);
         }else if(route.name==='Detail'){
             return (<View navigator={navigator}>
                 <Text>detail</Text>

@@ -9,7 +9,7 @@ import {
     View
 } from 'react-native';
 
-var MovieInTheaters = require('./MovieInTheaters').default;
+var HomePageList = require('./HomePageList').default;
 var Drawer = require('./Drawer').default;
 
 const SCREEN_WIDTH=Dimensions.get('window').width;
@@ -26,7 +26,7 @@ const toolbarActions = [
 var DataSource = require('./DataSource');
 var source=new DataSource();
 
-export default class Home extends Component {
+export default class HomePage extends Component {
     constructor(props) {
         super(props);
         this.onSelectItem=this.onSelectItem.bind(this);
@@ -58,7 +58,7 @@ export default class Home extends Component {
                     actions={toolbarActions}
                     onIconClicked={() => this.refs[REF_DRAWER].openDrawer()}
                     onActionSelected={this.onActionSelected} />
-                <MovieInTheaters theme={item} style={{flex: 1, width: SCREEN_WIDTH}} navigator={this.props.navigator}  tabLabel="MovieInTheaters" />
+                <HomePageList theme={item} style={{flex: 1, width: SCREEN_WIDTH}} navigator={this.props.navigator}  tabLabel="HomePageList" />
             </DrawerLayoutAndroid>
         );
     }

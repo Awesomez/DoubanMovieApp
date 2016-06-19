@@ -4,7 +4,8 @@ import {
   StyleSheet, Text, Navigator, View,StatusBar
 } from 'react-native';
 
-var HomePage=require('./HomePage').default;
+import HomePage from './HomePage';
+import DetailPage from './DetailPage';
 
 class App extends Component {
     render() {
@@ -27,12 +28,11 @@ class App extends Component {
     }
     
     routerMapper(route,navigator){
-        if(route.name==='Home'){
-            return (<HomePage {...route.params} navigator={navigator}/>);
-        }else if(route.name==='Detail'){
-            return (<View navigator={navigator}>
-                <Text>detail</Text>
-            </View>);
+        switch (route.name){
+            case 'Home':
+                return (<HomePage {...route.params} navigator={navigator}/>);
+            case 'Detail':
+                return (<DetailPage navigator={navigator} />);
         }
     }
 }

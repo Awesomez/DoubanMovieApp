@@ -35,7 +35,7 @@ export default class Drawer extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TouchableNativeFeedback onPress={this._pressButton.bind(this)}>
+                <TouchableNativeFeedback>
                     <View>
                         <Text style={{margin: 10,color:'#fff',fontSize: 15, textAlign: 'center'}}>我是导航功能栏标题</Text>
                     </View>
@@ -60,16 +60,6 @@ export default class Drawer extends Component {
                     </View>
             </TouchableNativeFeedback>
         );
-    }
-
-    _pressButton() {
-        ToastAndroid.show('hahadd', ToastAndroid.SHORT);
-        const { navigator } = this.props;
-        if(navigator) {
-            navigator.push({
-                name: 'Detail'
-            })
-        }
     }
 }
 

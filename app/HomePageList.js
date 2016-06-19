@@ -17,6 +17,8 @@ export default class HomePageList extends Component {
             isLoaded: false,
             dataSource: dataSource
         };
+
+        this.renderRow=this.renderRow.bind(this);
     }
 
     //componentDidMount方法方法只会在组件完成加载的时候调用一次
@@ -39,7 +41,7 @@ export default class HomePageList extends Component {
             <ListView
                 initialListSize={6}
                 dataSource={this.state.dataSource}
-                renderRow={this.renderMovie}
+                renderRow={this.renderRow}
             />
         );
     }
@@ -62,13 +64,13 @@ export default class HomePageList extends Component {
             }).done();
     }
 
-    renderMovie(movie: Object){
+    renderRow(movie: Object){
         var itemTitle=movie.title?movie.title:null;
         var itemTitleEng=movie.original_title?movie.original_title:null;
         var itemImgSmall=(movie.images.small!== undefined)?movie.images.small:null;
 
         return (
-            <TouchableNativeFeedback >
+            <TouchableNativeFeedback onPress={this.pressButton.bind(this)}>
             <View style={styles.movieRow}>
                 <Image
                     source={{uri: itemImgSmall}}
@@ -91,6 +93,15 @@ export default class HomePageList extends Component {
                 </Text>
             </View>
         );
+    }
+
+    pressButton() {
+        const { navigator } = this.props;
+        if(navigator) {
+            navigator.push({
+                name: 'Detail'
+            })
+        }
     }
 }
 
